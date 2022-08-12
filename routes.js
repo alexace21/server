@@ -1,13 +1,21 @@
 const router = require('express').Router();
 
-const homeController = require('./controllers/homeController');
+const userController = require('./controllers/userController');
+const registerController = require('./controllers/registerController');
+const loginController = require('./controllers/loginController');
 const marketController = require('./controllers/marketController');
-const authController = require('./controllers/authController');
+const createOfferController = require('./controllers/createOfferController');
+const productController = require('./controllers/productController');
 const alternativeController = require('./controllers/alternativeController');
 
-router.use(homeController);
+
+router.use('/users', userController);
+router.use('/register', registerController); // works
+router.use('/login', loginController); // works
 router.use('/market', marketController);
-router.use(['/login', '/register', '/logout'], authController);
+router.use('/create', createOfferController);
+router.use('/product-details', productController)
 router.use('*', alternativeController);
+
 
 module.exports = router;

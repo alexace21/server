@@ -5,11 +5,6 @@ const { SECRET } = require('../config/environment');
 
 exports.create = (userData) => User.create(userData);
 
-exports.addUser = (userData) => {
-    const user = new User(userData);
-    return user.save();
-}
-
 exports.login = async (email, password) => {
     const user = await User.findOne({ email });
     console.log(email);
@@ -43,3 +38,10 @@ exports.generateToken = (user) => {
     });
     return promiseResult;
 };
+
+exports.getAll = () => User.find();
+
+exports.update = (userId, userData) => User.updateOne({ _id: userId }, userData['data']);
+
+exports.getOne = (userId) => User.findById(userId);
+

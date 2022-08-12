@@ -1,7 +1,7 @@
 const router = require('express').Router();
 
 router.get('*', (req, res) => {
-    res.send(res.status(404));
+    res.status(404).send('Unexpected error!');
 });
 
 module.exports = router;
