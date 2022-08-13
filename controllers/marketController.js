@@ -22,14 +22,36 @@ router.get('/', async (req, res) => {
     res.status(200).send(allOffers);
 });
 
-router.post('/:productId', async (req, res) => {
+router.delete('/:offerId', async (req, res) => {
     try {
-        const deletedRecord = await marketService.del(req.params.productId);
+         const deletedRecord = await marketService.destroy(req.params.offerId);
+         const newRecords = await marketService.getAll();
+        res.status(200).send(newRecords);
+    } catch (error) {
+        console.log(error)
+        res.status(402).send(error);
+    }
+});
+
+router.put('/:offerId', async (req, res) => {
+    try {
+        const editRecord = await marketService.update(req.params.offerId, req.body);
         
-        res.status(200).send(deletedRecord);
+        const updatedRecords = await marketService.getAll();
+        res.status(200).send(updatedRecords);
     } catch (error) {
         console.log(error)
         res.status(400).send(error);
+    }
+});
+
+router.get('/:offerId', async (req, res) => {
+    try {
+         const wantedRecord = await marketService.getOne(req.params.offerId)
+        res.status(200).send(wantedRecord);
+    } catch (error) {
+        console.log(error)
+        res.status(402).send(error);
     }
 });
 

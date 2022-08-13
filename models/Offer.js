@@ -29,6 +29,10 @@ const offerSchema = new mongoose.Schema({
         type: mongoose.Types.ObjectId,
         ref: 'User'
     }],
+    updated: {
+        type: Date,
+        default: Date.now
+    },
 
 });
 

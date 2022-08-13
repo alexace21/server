@@ -6,10 +6,9 @@ router.post('/', async (req, res) => {
     const { email, password } = req.body;
 
     try {
-        const user = await userService.login(email, password);
+        let user = await userService.login(email, password);
         const token = await userService.generateToken(user);
 
-        res.cookie(COOKIE_SESSION_NAME, token, { httpOnly: true });
         res.status(200).send(user);
     } catch (error) {
         return res.status(401).send(error);
