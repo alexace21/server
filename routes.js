@@ -14,8 +14,8 @@ router.use('/register', registerController); // works
 router.use('/login', loginController); // works
 router.use('/market', marketController);
 router.use('/create', createOfferController);
-router.use('/product-details', productController);
 router.use('/catalog', catalogController);
+router.use('/catalog/product-details', productController);
 router.use('*', alternativeController);
 
 
