@@ -6,4 +6,6 @@ exports.create = (productData) => Product.create(productData);
 
 exports.getOne = (productId) => Product.findById(productId);
 
+exports.getAll = () => Product.find();
+
 exports.update = (productId, productData) => Product.updateOne({ _id: productId }, productData['data']);
