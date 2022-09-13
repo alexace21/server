@@ -30,5 +30,22 @@ router.get('/:userId', async (req, res) => {
     }
 })
 
+router.get('/:userId/:productId', async (req, res) => {
+    try {
+        const foundRecord = await userService.getOne(req.params.userId);
+        console.log(foundRecord);
+        console.log(req.params.productId)
+        console.log(req.params.userId)
+
+        foundRecord.collections.push(req.params.productId);
+        console.log(foundRecord)
+
+        res.status(200).send(foundRecord);
+    } catch (error) {
+        console.log(error)
+        res.status(400).send(error);
+    }
+})
+
 
 module.exports = router;
